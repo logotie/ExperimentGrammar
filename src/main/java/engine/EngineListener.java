@@ -1,7 +1,7 @@
 package engine;
 
-import test.SimpleGBaseListener;
-import test.SimpleGParser;
+import grammar.SimpleGBaseListener;
+import grammar.SimpleGParser;
 
 public class EngineListener extends SimpleGBaseListener {
 
@@ -9,9 +9,14 @@ public class EngineListener extends SimpleGBaseListener {
     public void enterAssignment(SimpleGParser.AssignmentContext assignmentContext){
 
         //var a = a+1;
-        
+        //var a = a+a+a/4;
+
+
+
         System.out.println("AssignmentSpecial");
     }
+
+
 
     @Override
     public void enterForloop(SimpleGParser.ForloopContext forloopContext){

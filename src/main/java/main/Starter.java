@@ -5,8 +5,8 @@ import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.tree.ParseTree;
 import org.antlr.v4.runtime.tree.ParseTreeWalker;
-import test.SimpleGLexer;
-import test.SimpleGParser;
+import grammar.SimpleGLexer;
+import grammar.SimpleGParser;
 
 import java.io.File;
 import java.nio.charset.StandardCharsets;

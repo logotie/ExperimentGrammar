@@ -1,6 +1,6 @@
 package main;
-import test.SimpleGBaseListener;
-import test.SimpleGParser;
+import grammar.SimpleGBaseListener;
+import grammar.SimpleGParser;
 
 /** Convert short array inits like {1,2,3} to "\u0001\u0002\u0003" */
 public class ShortToUnicodeString extends SimpleGBaseListener {

@@ -14,8 +14,8 @@ block:
 
 
 assignment:
-VARIDENT SINGLESPACE ID EQUALSIGN expr ENDSTATEMENT
-| ID EQUALSIGN expr ENDSTATEMENT;
+VARIDENT SINGLESPACE ID EQUALSIGN expr
+| ID EQUALSIGN expr ;
 
 forloop:
 FORIDENT SINGLESPACE INT SINGLESPACE 'to' SINGLESPACE INT SINGLESPACE 'do' STARTBRACKET block+ ENDBRACKET;
@@ -23,10 +23,14 @@ FORIDENT SINGLESPACE INT SINGLESPACE 'to' SINGLESPACE INT SINGLESPACE 'do' START
 ifstat:
 IF SINGLESPACE conditon SINGLESPACE THEN STARTBRACKET block+ ENDBRACKET;
 
-expr: expr('*'|'/') expr?ENDSTATEMENT
-    | expr('+'|'-') expr?ENDSTATEMENT
-    | expr(LESSTHAN|MORETHAN) expr?ENDSTATEMENT
-    | expr EQUALS expr?ENDSTATEMENT
+expr: expr('*'|'/') expr
+    | expr('*'|'/') expr ENDSTATEMENT
+    | expr('+'|'-') expr
+    | expr('+'|'-') expr ENDSTATEMENT
+    | expr(LESSTHAN|MORETHAN) expr
+    | expr(LESSTHAN|MORETHAN) expr ENDSTATEMENT
+    | expr EQUALS expr
+    | expr EQUALS expr ENDSTATEMENT
     |   INT
     |   ID
     |   '(' expr ')'

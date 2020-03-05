@@ -4,7 +4,7 @@ import main.Starter;
 
 import org.antlr.v4.runtime.tree.ParseTree;
 import org.antlr.v4.runtime.tree.ParseTreeWalker;
-import test.SimpleGParser;
+import grammar.SimpleGParser;
 
 import java.util.List;
 
