@@ -14,8 +14,8 @@ block:
 
 
 assignment:
-VARIDENT SINGLESPACE ID EQUALSIGN expr
-| ID EQUALSIGN expr ;
+VARIDENT SINGLESPACE ID EQUALSIGN expr #assigntype
+| ID EQUALSIGN expr #changeassign ;
 
 forloop:
 FORIDENT SINGLESPACE INT SINGLESPACE 'to' SINGLESPACE INT SINGLESPACE 'do' STARTBRACKET block+ ENDBRACKET;
@@ -23,26 +23,28 @@ FORIDENT SINGLESPACE INT SINGLESPACE 'to' SINGLESPACE INT SINGLESPACE 'do' START
 ifstat:
 IF SINGLESPACE conditon SINGLESPACE THEN STARTBRACKET block+ ENDBRACKET;
 
-expr: expr('*'|'/') expr
-    | expr('*'|'/') expr ENDSTATEMENT
-    | expr('+'|'-') expr
-    | expr('+'|'-') expr ENDSTATEMENT
-    | expr(LESSTHAN|MORETHAN) expr
-    | expr(LESSTHAN|MORETHAN) expr ENDSTATEMENT
-    | expr EQUALS expr
-    | expr EQUALS expr ENDSTATEMENT
-    |   INT
-    |   ID
-    |   '(' expr ')'
+expr: expr('*') expr #mul
+    | expr('/') expr ENDSTATEMENT #divend
+    | expr('*') expr ENDSTATEMENT #mulend
+    | expr('/') expr #div
+    | expr('+') expr #add
+    | expr('-') expr #minus
+    | expr('+') expr ENDSTATEMENT #addend
+    | expr('-') expr ENDSTATEMENT #minusend
+    | expr(LESSTHAN) expr #lessthancompare
+    | expr(MORETHAN) expr #morethancompare
+    | expr EQUALS expr #equality
+    | expr EQUALS expr ENDSTATEMENT #equalityend
+    |   INT #intend
+    |   ID #idend
     ;
 
-conditon: conditon('*'|'/') conditon
-    | conditon('+'|'-') conditon
-    | conditon(LESSTHAN|MORETHAN) conditon
-    | conditon EQUALS conditon
-    |   INT
-    |   ID
-    |   '(' conditon ')'
+conditon: conditon('*'|'/') conditon #condmultdiv
+    | conditon('+'|'-') conditon #condplusminus
+    | conditon(LESSTHAN|MORETHAN) conditon #condlessgreater
+    | conditon EQUALS conditon #condequality
+    |   INT #condint
+    |   ID #condid
     ;
 
 THEN:'then';
