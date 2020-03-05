@@ -29,6 +29,14 @@ public class EngineListener extends SimpleGBaseListener {
         //check if they are any expressions in the children
         //increment level by 1
 
+        //while loop
+        //Get children
+        //Pass children to function returns true or false, if express
+        //If true, pass to process exp
+
+
+        //Process exp
+        //Adds current exp to stack
 
         System.out.println("AssignmentSpecial");
     }
