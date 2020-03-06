@@ -23,6 +23,6 @@ public class Result {
     public boolean intStored(){return intActivated;}
 
     public String getResultString(){return resultString;}
-    
+
     public int getResultInt(){return result;}
 }
