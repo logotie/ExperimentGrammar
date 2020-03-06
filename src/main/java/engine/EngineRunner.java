@@ -10,8 +10,10 @@ import java.util.Stack;
 
 public class EngineRunner {
 
+    //We use a LIFO stack as the instruction on the last level is the one we work with first.
     public static Stack<ParserRuleContext> InstructionStack = new Stack<ParserRuleContext>();
     public static Stack<ParserRuleContext> Terminals = new Stack<>();
+    public static Map<String, >
 
     public void ProcessBlock(SimpleGParser.BlockContext ctx){
         //We have block context
@@ -28,6 +30,10 @@ public class EngineRunner {
         //Major instructions should be added after the tree has been walked
         //Terminals should have been added also.
         System.out.println("DEBUG");
+
+        var popped = InstructionStack.pop();
+
+        System.out.println("t");
     }
 
 }
