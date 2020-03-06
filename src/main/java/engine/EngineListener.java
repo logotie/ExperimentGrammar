@@ -8,6 +8,9 @@ import org.antlr.v4.runtime.tree.ParseTreeWalker;
 import java.util.List;
 import java.util.Stack;
 
+import static engine.EngineRunner.InstructionStack;
+import static engine.EngineRunner.Terminals;
+
 public class EngineListener extends SimpleGBaseListener {
 
     int counter = 0;
@@ -17,10 +20,12 @@ public class EngineListener extends SimpleGBaseListener {
     public void enterAssigntype(SimpleGParser.AssigntypeContext ctx){
 
 
-        counter++;
         System.out.println(ctx.getText()+":"+counter+"-assignment Children Count:"+ctx.children.size());
 
-
+        //As having children greater than one in the node denotes a level
+        if(ctx.children.size()>1) {
+            InstructionStack.push(ctx);
+        }
 
         //var a = a+1;
         //var a = a+a+a/4-a-a;
@@ -45,15 +50,29 @@ public class EngineListener extends SimpleGBaseListener {
         //System.out.println("AssignmentSpecial");
     }
 
+    //FUNCTIONAL
     @Override public void enterChangeassign(SimpleGParser.ChangeassignContext ctx) {
         counter++;
         System.out.println(ctx.getText()+":"+counter);
+        //As having children greater than one in the node denotes a level
+        if(ctx.children.size()>1) {
+            InstructionStack.push(ctx);
+        }
     }
 
+    //FUNCTIONAL
     @Override public void enterAdd(SimpleGParser.AddContext ctx) {
         counter++;
 
         System.out.println(ctx.getText()+":"+counter+"-Add Children Count:"+ctx.children.size());
+        //As having children greater than one in the node denotes a level
+        if(ctx.children.size()>1) {
+            InstructionStack.push(ctx);
+        }
+
+        if(ctx.children.size()==1){
+            Terminals.push(ctx);
+        }
     }
 
     @Override public void enterMinus(SimpleGParser.MinusContext ctx) {
@@ -80,9 +99,20 @@ public class EngineListener extends SimpleGBaseListener {
         System.out.println(ctx.toString());
     }
 
+    //FUNCTIONAL
     @Override public void enterAddend(SimpleGParser.AddendContext ctx) {
         counter++;
         System.out.println(ctx.getText()+":"+counter+"-AddEnd");
+
+        System.out.println(ctx.getText()+":"+counter+"-Add Children Count:"+ctx.children.size());
+        //As having children greater than one in the node denotes a level
+        if(ctx.children.size()>1) {
+            InstructionStack.push(ctx);
+        }
+
+        if(ctx.children.size()==1){
+            Terminals.push(ctx);
+        }
     }
 
     @Override public void enterDiv(SimpleGParser.DivContext ctx) {
@@ -101,9 +131,20 @@ public class EngineListener extends SimpleGBaseListener {
         System.out.println(ctx.toString());
     }
 
+    //FUNCTIONAL
     @Override public void enterIntend(SimpleGParser.IntendContext ctx) {
         counter++;
         System.out.println(ctx.getText()+":"+counter+"-IntEnd Children Count:"+ctx.children.size());
+
+        System.out.println(ctx.getText()+":"+counter+"-Add Children Count:"+ctx.children.size());
+        //As having children greater than one in the node denotes a level
+        if(ctx.children.size()>1) {
+            InstructionStack.push(ctx);
+        }
+
+        if(ctx.children.size()==1){
+            Terminals.push(ctx);
+        }
     }
 
     @Override public void enterEquality(SimpleGParser.EqualityContext ctx) {
