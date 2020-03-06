@@ -102,7 +102,6 @@ public class EngineListener extends SimpleGBaseListener {
     //FUNCTIONAL
     @Override public void enterAddend(SimpleGParser.AddendContext ctx) {
         counter++;
-        System.out.println(ctx.getText()+":"+counter+"-AddEnd");
 
         System.out.println(ctx.getText()+":"+counter+"-Add Children Count:"+ctx.children.size());
         //As having children greater than one in the node denotes a level
@@ -136,7 +135,6 @@ public class EngineListener extends SimpleGBaseListener {
         counter++;
         System.out.println(ctx.getText()+":"+counter+"-IntEnd Children Count:"+ctx.children.size());
 
-        System.out.println(ctx.getText()+":"+counter+"-Add Children Count:"+ctx.children.size());
         //As having children greater than one in the node denotes a level
         if(ctx.children.size()>1) {
             InstructionStack.push(ctx);

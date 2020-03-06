@@ -25,6 +25,9 @@ public class EngineRunner {
         walker.walk(new EngineListener(), nodes.get(0));
 
         //Once the block tree has been walked start processing instruction.
+        //Major instructions should be added after the tree has been walked
+        //Terminals should have been added also.
+        System.out.println("DEBUG");
     }
 
 }
