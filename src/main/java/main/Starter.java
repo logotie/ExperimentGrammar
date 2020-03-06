@@ -18,7 +18,7 @@ import java.util.Queue;
 
 public class Starter {
 
-    public static Queue<SimpleGParser.BlockContext> Global_iq = new LinkedList<SimpleGParser.BlockContext>();
+    public static Queue<SimpleGParser.BlockContext> Global_Blocks_iq = new LinkedList<SimpleGParser.BlockContext>();
 
 
     public static void main(String[] args) throws Exception {
@@ -41,6 +41,7 @@ public class Starter {
         // create a parser that feeds off the tokens buffer
         SimpleGParser parser = new SimpleGParser(tokens);
         ParseTree tree = parser.stat(); // begin parsing at init rule
+
 
         // Create a generic parse tree walker that can trigger callbacks
         ParseTreeWalker walker = new ParseTreeWalker();

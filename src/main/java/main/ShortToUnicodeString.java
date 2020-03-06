@@ -31,7 +31,7 @@ public class ShortToUnicodeString extends SimpleGBaseListener {
 
         //System.out.println("Found a block");
 
-        Starter.Global_iq.add(ctx);
+        Starter.Global_Blocks_iq.add(ctx);
         //System.out.println(ctx.start.toString());
         //System.out.println(ctx.stop.toString());
 
