@@ -1,13 +1,9 @@
 package engine.util;
 
-import grammar.SimpleGParser;
-import grammar.SimpleGParser.ExprContext;
-
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Stack;
 
-public class SearchableList {
+public class SearchableTerminalExprList {
 
     private List<TerminalExpr> privInstrStack= new ArrayList<>();
 
@@ -15,9 +11,9 @@ public class SearchableList {
         privInstrStack.add(instruc);
     }
 
-    public boolean existsByHashCode(int hashCode){
+    public boolean existsByHashCodeInnerExpr(int hashCode){
 
-        long matching = privInstrStack.stream().filter(n -> n.hashCode()==hashCode).count();
+        long matching = privInstrStack.stream().filter(n -> n.getExpr().hashCode()==hashCode).count();
 
         if(matching==0){
             return false;
@@ -26,10 +22,14 @@ public class SearchableList {
     }
 
     public TerminalExpr getByHashCode(int hashCode){
-        assert existsByHashCode(hashCode);
+        assert existsByHashCodeInnerExpr(hashCode);
 
         TerminalExpr terminal = privInstrStack.stream().filter(n -> n.hashCode()==hashCode)
                 .findAny().get();
+
+        long matching = privInstrStack.stream().filter(n -> n.getExpr().hashCode()==hashCode).count();
+
+        assert matching == 1;
 
         return terminal;
     }

@@ -1,14 +1,9 @@
 package engine.decoder;
 
-import com.ibm.icu.impl.Assert;
 import engine.util.Result;
+import engine.util.TerminalExpr;
 import grammar.SimpleGParser;
-import org.antlr.v4.runtime.ParserRuleContext;
-import org.antlr.v4.runtime.tree.ParseTree;
 import grammar.SimpleGParser.ExprContext;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import static engine.EngineRunner.Terminals;
 
@@ -52,9 +47,9 @@ public class ArithmeticDecoder {
         //Operation
         String operand = children.get(1).getText();
 
-        assert IsExprTerminal(firstRight)||IsExprTerminal(firstLeft);
+        assert isExprTerminal(firstRight)||isExprTerminal(firstLeft);
 
-        ExprContext terminal = IsExprTerminal(firstLeft) ? firstLeft : firstRight;
+        ExprContext terminal = isExprTerminal(firstLeft) ? firstLeft : firstRight;
 
        // Result operationResult =
     }
@@ -62,26 +57,61 @@ public class ArithmeticDecoder {
     //FIRST MUST DETERMINE WHICH ONE IS A TERMINAL
     private static Result calculator(ExprContext terminal, String operand, ExprContext right){
 
-        assert IsExprTerminal(terminal);
+        assert isExprTerminal(terminal);
 
-        //we need to now retrieve the text values, it could be a string or an int.
+        //Get the terminal in a form which contains the type
+        TerminalExpr terminalExpr = retrieveMatchingExpr(terminal);
 
+        //Now we need to know if right is a terminal
+
+        if(isExprTerminal(right)){
+
+            TerminalExpr terminalExpr2 = retrieveMatchingExpr(right);
+
+            Result res = rawTerminalCalc(terminalExpr, terminalExpr2, operand);
+        }
+        else
+        {
+            //we check solved.
+        }
+
+
+    }
+
+    //Here we enforce that when adding two variables together they must be of the same type.
+    private static Result rawTerminalCalc(TerminalExpr t, TerminalExpr t2, String op){
+
+        if(t.isInt()){
+            int temp = t.getInt();
+            if(t2.isInt()){
+                int result = temp+t2.getInt();
+            }else{
+
+            }
+        }
+        
         return null;
     }
 
-    private static boolean IsExprTerminal(ExprContext exprContext){
+    private static boolean isExprTerminal(ExprContext exprContext){
         //it's a terminal if the size is max 1
         //if the hashcode is in the terminal stack.
 
         if(exprContext.children.size()==1
                 &&
-                Terminals.existsByHashCode(exprContext.hashCode()))
+                Terminals.existsByHashCodeInnerExpr(exprContext.hashCode()))
         {
             return true;
         }
 
         return false;
 
+    }
+
+    private static TerminalExpr retrieveMatchingExpr(ExprContext exprContext){
+        assert Terminals.existsByHashCodeInnerExpr(exprContext.hashCode());
+
+        return Terminals.getByHashCode(exprContext.hashCode());
     }
 
 }

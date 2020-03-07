@@ -10,15 +10,14 @@ import org.antlr.v4.runtime.tree.ParseTreeWalker;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Stack;
 
 public class EngineRunner {
 
     //We use a LIFO stack as the instruction on the last level is the one we work with first.
     public static engine.util.InstructionStack InstructionStack = new InstructionStack();
     //This we use to store the INTEND, IDEND rules.
-    public static SearchableList Terminals = new SearchableList();
-    public static Map<String, Result> Solved = new HashMap<>();
+    public static SearchableTerminalExprList Terminals = new SearchableTerminalExprList();
+    public static SearchableResultList Solved = new SearchableResultList();
     public static int counter = 0;
 
     public void ProcessBlock(SimpleGParser.BlockContext ctx){

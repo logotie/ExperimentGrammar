@@ -9,6 +9,7 @@ public class TerminalExpr {
     private String rawValue;
 
     public TerminalExpr(SimpleGParser.ExprContext expr, Boolean isInt){
+        assert expr.children.size()==1;
         this.expr = expr;
         this.isInt = isInt;
     }
@@ -31,6 +32,10 @@ public class TerminalExpr {
         }else{
             throw new RuntimeException();
         }
+    }
+
+    public boolean isInt(){
+        return isInt;
     }
 
 
