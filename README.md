@@ -2,8 +2,6 @@
 # ExperimentGrammar
 An experimental test language I am working on.  
 
-Goal: Bytecode Generator in Java.  Interpreter/Compiler in C++
-
 Just something I am doing in my spare time.
 
 First goal is to get it working.
@@ -12,6 +10,10 @@ I'm using ANTLR 4 to define the grammar.
 There's going to be a lot that can be improved on, I'm reading and learning as I am going.
 
 A language run on the JVM.
+
+# Goals
+*Get it running basically and generating a form of bytecode using Java.
+*Consume the bytecode using C++ and interpret/compile the program.
 
 ```
 string a="16"
