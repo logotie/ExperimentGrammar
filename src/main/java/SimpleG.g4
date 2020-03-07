@@ -14,27 +14,28 @@ block:
 
 
 assignment:
-VARIDENT SINGLESPACE ID EQUALSIGN expr ENDSTATEMENT #assigntype
-| ID EQUALSIGN expr ENDSTATEMENT #changeassign;
+STRINGIDENT SINGLESPACE ID EQUALSIGN STRINGCHARACTER expr STRINGCHARACTER #assignstringmutablesingletype
+|NUMIDENT SINGLESPACE ID EQUALSIGN  expr  #assigndigitsmutablesingletype
+|ID EQUALSIGN STRINGCHARACTER expr STRINGCHARACTER  #assignstringmutablechangetype
+|ID EQUALSIGN expr #assignmutable
+|STRINGIDENT SINGLESPACE ID NONMUTABLE STRINGCHARACTER expr STRINGCHARACTER #assignstringnonmutable
+|NUMIDENT SINGLESPACE ID NONMUTABLE  expr  #assigndigitsnonmutable
+|ID NONMUTABLE STRINGCHARACTER expr STRINGCHARACTER  #assignstringnonmutable
+|ID NONMUTABLE expr #assigntextnonmutable;
 
 forloop:
-FORIDENT SINGLESPACE INT SINGLESPACE 'to' SINGLESPACE INT SINGLESPACE 'do' STARTBRACKET block+ ENDBRACKET;
+FORIDENT SINGLESPACE INT DOUBLEDOTKEYWORDFORLOOP INT SINGLESPACE DOKEYWORDFORLOOP STARTBRACKET block+ ENDBRACKET;
 
 ifstat:
 IF SINGLESPACE conditon SINGLESPACE THEN STARTBRACKET block+ ENDBRACKET;
 
 expr: expr('*') expr #mul
-    | expr('/') expr ENDSTATEMENT #divend
-    | expr('*') expr ENDSTATEMENT #mulend
     | expr('/') expr #div
     | expr('+') expr #add
     | expr('-') expr #minus
-    | expr('+') expr ENDSTATEMENT #addend
-    | expr('-') expr ENDSTATEMENT #minusend
     | expr(LESSTHAN) expr #lessthancompare
     | expr(MORETHAN) expr #morethancompare
     | expr EQUALS expr #equality
-    | expr EQUALS expr ENDSTATEMENT #equalityend
     |   INT #intend
     |   ID #idend
     ;
@@ -48,6 +49,11 @@ conditon: conditon('*'|'/') conditon #condmultdiv
     ;
 
 
+
+comment: COMMENTSIGN ID;
+
+COMMENTSIGN:'#';
+NONMUTABLE:':';
 ADD:'+';
 MINUS:'-';
 DIV:'/';
@@ -56,14 +62,19 @@ THEN:'then';
 LESSTHAN:'<';
 MORETHAN:'>';
 EQUALS:'==';
- VARIDENT:'var';
+DOUBLEDOTKEYWORDFORLOOP:'..';
+DOKEYWORDFORLOOP:'do';
+ STRINGIDENT:'string';
+ NUMIDENT:'num';
+ STRINGCHARACTER:'"';
  FORIDENT:'for';
  IF:'if';
   ENDSTATEMENT: ';';
   STARTBRACKET:'{';
   ENDBRACKET:'}';
  ID : [a-zA-Z_] [a-zA-Z_0-9]*
-  |[0-9]+ [a-zA-Z_]+;
+  |[0-9]+ [a-zA-Z_]+
+  |','+;
  INT : [0-9]+ ;
  SINGLESPACE: [' '];
 EQUALSIGN : '=';
