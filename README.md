@@ -2,6 +2,8 @@
 # ExperimentGrammar
 An experimental test language I am working on.  
 
+Goal: Bytecode Generator in Java.  Interpreter/Compiler in C++
+
 Just something I am doing in my spare time.
 
 First goal is to get it working.
