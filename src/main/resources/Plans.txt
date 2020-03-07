@@ -43,6 +43,13 @@ Get back result object.
 Store result obj with hashcode of expr in solved.
 Throw rest away.
 
+CALC:
+Three parameters.
+2 hashcodes, operation.
+If an ID, get ID value and add then return result
+
+ASSIGNMENT --
+
 
 LEVELS
 [
