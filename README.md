@@ -12,18 +12,18 @@ There's going to be a lot that can be improved on, I'm reading and learning as I
 A language run on the JVM.
 
 ```
-string a=16
+string a="16"
 
 num b=4
 
-c="test"
+c="test"	#able to change type
 
 d=[1,2,3,4,5]
 e=[6,7,8]
 
-f=1+c' #"1test".  The ' character signifies that the num will be converted to string
+g=d+e #	[1,2,3,4,5,6,7,8]
 
-g=d+e; #[1,2,3,4,5,6,7,8]
+f=2'+c	#"2test"	The ' character signifies that 2 will be converted into string.
 
 f=4 #mutable
 f:4 #is now immutable
