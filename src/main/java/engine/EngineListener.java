@@ -1,5 +1,6 @@
 package engine;
 
+import engine.util.EngineConstants;
 import grammar.SimpleGBaseListener;
 import grammar.SimpleGParser;
 import org.antlr.v4.runtime.ParserRuleContext;
@@ -24,7 +25,7 @@ public class EngineListener extends SimpleGBaseListener {
 
         //As having children greater than one in the node denotes a level
         if(ctx.children.size()>1) {
-            InstructionStack.push(ctx);
+            InstructionStack.push(EngineConstants.Types.ASSIGN, ctx);
         }
 
         //var a = a+1;
@@ -56,7 +57,7 @@ public class EngineListener extends SimpleGBaseListener {
         System.out.println(ctx.getText()+":"+counter);
         //As having children greater than one in the node denotes a level
         if(ctx.children.size()>1) {
-            InstructionStack.push(ctx);
+            InstructionStack.push(EngineConstants.Types.ASSIGNCHANGE,ctx);
         }
     }
 
@@ -67,7 +68,7 @@ public class EngineListener extends SimpleGBaseListener {
         System.out.println(ctx.getText()+":"+counter+"-Add Children Count:"+ctx.children.size());
         //As having children greater than one in the node denotes a level
         if(ctx.children.size()>1) {
-            InstructionStack.push(ctx);
+            InstructionStack.push(EngineConstants.Types.ARITHMETIC, ctx);
         }
 
         if(ctx.children.size()==1){
@@ -106,7 +107,7 @@ public class EngineListener extends SimpleGBaseListener {
         System.out.println(ctx.getText()+":"+counter+"-Add Children Count:"+ctx.children.size());
         //As having children greater than one in the node denotes a level
         if(ctx.children.size()>1) {
-            InstructionStack.push(ctx);
+            InstructionStack.push(EngineConstants.Types.ARITHMETIC,ctx);
         }
 
         if(ctx.children.size()==1){
@@ -137,7 +138,7 @@ public class EngineListener extends SimpleGBaseListener {
 
         //As having children greater than one in the node denotes a level
         if(ctx.children.size()>1) {
-            InstructionStack.push(ctx);
+            InstructionStack.push(EngineConstants.Types.ARITHMETIC, ctx);
         }
 
         if(ctx.children.size()==1){

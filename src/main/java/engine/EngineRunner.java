@@ -2,6 +2,7 @@ package engine;
 
 import engine.util.EngineConstants;
 import engine.util.GenPair;
+import engine.util.InstructionStack;
 import engine.util.Result;
 import grammar.SimpleGParser;
 import org.antlr.v4.runtime.ParserRuleContext;
@@ -16,7 +17,7 @@ import java.util.Stack;
 public class EngineRunner {
 
     //We use a LIFO stack as the instruction on the last level is the one we work with first.
-    public static Stack<GenPair<EngineConstants.Types, ParserRuleContext>> InstructionStack = new Stack<>();
+    public static engine.util.InstructionStack InstructionStack = new InstructionStack();
     public static Stack<ParserRuleContext> Terminals = new Stack<>();
     public static Map<String, Result> Solved = new HashMap<>();
 
@@ -35,7 +36,7 @@ public class EngineRunner {
         //Terminals should have been added also.
         System.out.println("DEBUG");
 
-        var popped = InstructionStack.pop();
+        var popped = InstructionStack.popInstruc();
 
         System.out.println("t");
     }
