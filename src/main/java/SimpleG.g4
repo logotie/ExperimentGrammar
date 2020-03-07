@@ -47,6 +47,11 @@ conditon: conditon('*'|'/') conditon #condmultdiv
     |   ID #condid
     ;
 
+
+ADD:'+';
+MINUS:'-';
+DIV:'/';
+MUL:'*';
 THEN:'then';
 LESSTHAN:'<';
 MORETHAN:'>';
