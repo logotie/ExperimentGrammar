@@ -1,5 +1,6 @@
 package engine;
 
+import engine.decoder.ArithmeticDecoder;
 import engine.util.EngineConstants;
 import engine.util.GenPair;
 import engine.util.InstructionStack;
@@ -20,6 +21,7 @@ public class EngineRunner {
     public static engine.util.InstructionStack InstructionStack = new InstructionStack();
     public static Stack<ParserRuleContext> Terminals = new Stack<>();
     public static Map<String, Result> Solved = new HashMap<>();
+    public static int counter = 0;
 
     public void ProcessBlock(SimpleGParser.BlockContext ctx){
         //We have block context
@@ -36,10 +38,30 @@ public class EngineRunner {
         //Terminals should have been added also.
         System.out.println("DEBUG");
 
-        var popped = InstructionStack.popInstruc();
+        var mostRecentInstruction = InstructionStack.popInstruc();
 
         //Start processing
-        System.out.println("t");
+        InstructRouter(mostRecentInstruction.getT(), mostRecentInstruction.getT2());
+    }
+
+    private void InstructRouter(EngineConstants.Types type, ParserRuleContext instruction){
+        if(counter>0) {
+
+            switch (type) {
+                case ARITHMETIC:
+                    ArithmeticDecoder.DecodeMathInstructionWarm(instruction);
+                    break;
+            }
+
+        }else{
+
+            switch (type){
+                case ARITHMETIC:
+                    ArithmeticDecoder.DecodeMathInstructionCold(instruction);
+                    break;
+            }
+
+        }
     }
 
 }
