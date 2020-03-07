@@ -49,7 +49,22 @@ Three parameters.
 If an ID, get ID value and add then return result
 
 ASSIGNMENT --
+Get 3rd element.
+Check that is not in memory.
+Look for hashcode that is expr.
+Check in solved.
+If not there check in terminals.
+Retrieve the value.
+Create in memory.
 
+CHANGEASSIGNMENT --
+Get 3rd element.
+Check that is in memory.
+Look for hashcode that is expr.
+Check in solved.
+If not there check in terminals.
+Retrieve the value.
+Create in memory.
 
 LEVELS
 [
