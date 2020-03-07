@@ -1,0 +1,44 @@
+3 Arraylists:
+
+We process each block one by one.
+We have to make sure to start with the first block.
+WHAT HAPPENS WHEN THERE IS A BLOCK WITHIN A BLOCK.
+We walk the block through the Enginelistener.
+There's a trigger in the engine listener.
+Commands with more than 1 child are treated as grouped commands/levels, they are added to a queue for evaluating later.
+
+These commands are seperated based on their type
+ASSIGNMENTS - DONE
+ARITHMETIC - DONE
+IF - TBD
+FOR - TBD
+
+Commands with 1 child are treated as terminals.
+We now grab the first command on the stack - which is the lowest level.
+Two different paths, coldstart and warmstart
+We keep a counter in the engine to signify first execution
+
+COLDSTART -
+ARITHMETIC
+Pop the lowest instruction off the stack.
+We get all the children in the instruction.
+The children with length of 1, get their hashcode
+
+LEVELS
+[
+]
+
+SOLVED
+[
+]
+
+TERMINALS
+[
+]
+
+
+
+
+COLD START
+
+WARM START
