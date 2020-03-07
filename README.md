@@ -21,7 +21,8 @@ c="test"
 d=[1,2,3,4,5]
 e=[6,7,8]
 
-f=1+c' #"1test"
+f=1+c' #"1test".  The ' character signifies that the num will be converted to string
+
 g=d+e; #[1,2,3,4,5,6,7,8]
 
 f=4 #mutable
