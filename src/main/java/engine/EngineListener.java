@@ -1,6 +1,7 @@
 package engine;
 
 import engine.util.EngineConstants;
+import engine.util.TerminalExpr;
 import grammar.SimpleGBaseListener;
 import grammar.SimpleGParser;
 import org.antlr.v4.runtime.ParserRuleContext;
@@ -22,6 +23,8 @@ public class EngineListener extends SimpleGBaseListener {
 
 
         System.out.println(ctx.getText()+":"+counter+"-assignment Children Count:"+ctx.children.size());
+
+        assert ctx.children.size()>1;
 
         //As having children greater than one in the node denotes a level
         if(ctx.children.size()>1) {
@@ -55,6 +58,9 @@ public class EngineListener extends SimpleGBaseListener {
     @Override public void enterChangeassign(SimpleGParser.ChangeassignContext ctx) {
         counter++;
         System.out.println(ctx.getText()+":"+counter);
+
+        assert ctx.children.size()>1;
+
         //As having children greater than one in the node denotes a level
         if(ctx.children.size()>1) {
             InstructionStack.push(EngineConstants.Types.ASSIGNCHANGE,ctx);
@@ -65,15 +71,16 @@ public class EngineListener extends SimpleGBaseListener {
     @Override public void enterAdd(SimpleGParser.AddContext ctx) {
         counter++;
 
+        assert ctx.children.size()>1;
+
         System.out.println(ctx.getText()+":"+counter+"-Add Children Count:"+ctx.children.size());
         //As having children greater than one in the node denotes a level
         if(ctx.children.size()>1) {
             InstructionStack.push(EngineConstants.Types.ARITHMETIC, ctx);
+        }else {
+            throw new RuntimeException();
         }
 
-        if(ctx.children.size()==1){
-            Terminals.push(ctx);
-        }
     }
 
     @Override public void enterMinus(SimpleGParser.MinusContext ctx) {
@@ -105,14 +112,18 @@ public class EngineListener extends SimpleGBaseListener {
         counter++;
 
         System.out.println(ctx.getText()+":"+counter+"-Add Children Count:"+ctx.children.size());
+
+        assert ctx.children.size()>1;
+
+
+
         //As having children greater than one in the node denotes a level
         if(ctx.children.size()>1) {
             InstructionStack.push(EngineConstants.Types.ARITHMETIC,ctx);
+        }else{
+            throw new RuntimeException();
         }
 
-        if(ctx.children.size()==1){
-            Terminals.push(ctx);
-        }
     }
 
     @Override public void enterDiv(SimpleGParser.DivContext ctx) {
@@ -125,6 +136,13 @@ public class EngineListener extends SimpleGBaseListener {
 
     @Override public void enterIdend(SimpleGParser.IdendContext ctx) {
         System.out.println(ctx.getText());
+        assert ctx.children.size()==1;
+        if(ctx.children.size()==1){
+            TerminalExpr term = new TerminalExpr(ctx, true);
+            Terminals.add(term);
+        }else{
+            throw new RuntimeException();
+        }
     }
 
     @Override public void enterMorethancompare(SimpleGParser.MorethancompareContext ctx) {
@@ -136,13 +154,13 @@ public class EngineListener extends SimpleGBaseListener {
         counter++;
         System.out.println(ctx.getText()+":"+counter+"-IntEnd Children Count:"+ctx.children.size());
 
-        //As having children greater than one in the node denotes a level
-        if(ctx.children.size()>1) {
-            InstructionStack.push(EngineConstants.Types.ARITHMETIC, ctx);
-        }
+        assert ctx.children.size()==1;
 
         if(ctx.children.size()==1){
-            Terminals.push(ctx);
+            TerminalExpr term = new TerminalExpr(ctx, true);
+            Terminals.add(term);
+        }else{
+            throw new RuntimeException();
         }
     }
 

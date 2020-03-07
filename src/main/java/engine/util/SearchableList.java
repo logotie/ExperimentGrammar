@@ -9,9 +9,9 @@ import java.util.Stack;
 
 public class SearchableList {
 
-    private List<ExprContext> privInstrStack= new ArrayList<>();
+    private List<TerminalExpr> privInstrStack= new ArrayList<>();
 
-    public void add(ExprContext instruc){
+    public void add(TerminalExpr instruc){
         privInstrStack.add(instruc);
     }
 
@@ -25,10 +25,10 @@ public class SearchableList {
         return true;
     }
 
-    public ExprContext getByHashCode(int hashCode){
+    public TerminalExpr getByHashCode(int hashCode){
         assert existsByHashCode(hashCode);
 
-        ExprContext terminal = privInstrStack.stream().filter(n -> n.hashCode()==hashCode)
+        TerminalExpr terminal = privInstrStack.stream().filter(n -> n.hashCode()==hashCode)
                 .findAny().get();
 
         return terminal;

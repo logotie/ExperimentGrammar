@@ -36,13 +36,12 @@ public class ArithmeticDecoder {
         //Get all the children
         var children = instruction.children;
 
+        assert children.size() == 3;
+
         //3 children for example: 'expr' '+' 'expr'
         if(children.size()!=3){
             throw new RuntimeException();
         }
-
-        //Maximum of 2 exprcontexts, stored in a parsetree
-        int size = children.get(0).getChildCount();
 
         //if 1 it's a terminal, if not it's an expression
         SimpleGParser.ExprContext firstLeft = (SimpleGParser.ExprContext) children.get(0);
@@ -50,23 +49,23 @@ public class ArithmeticDecoder {
         //Right operand
         SimpleGParser.ExprContext firstRight = (SimpleGParser.ExprContext) children.get(2);
 
-        //Get hashcode
-        int hashCode = firstLeft.hashCode();
-
-        //This could be a terminal or it could be an expr
-
-
-        ParseTree secondRight = children.get(2);
-
         //Operation
         String operand = children.get(1).getText();
 
+        assert IsExprTerminal(firstRight)||IsExprTerminal(firstLeft);
 
+        ExprContext terminal = IsExprTerminal(firstLeft) ? firstLeft : firstRight;
 
+       // Result operationResult =
     }
 
     //FIRST MUST DETERMINE WHICH ONE IS A TERMINAL
-    private static Result calculator(ExprContext left, String operand, ExprContext right){
+    private static Result calculator(ExprContext terminal, String operand, ExprContext right){
+
+        assert IsExprTerminal(terminal);
+
+        //we need to now retrieve the text values, it could be a string or an int.
+
         return null;
     }
 
