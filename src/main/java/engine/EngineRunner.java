@@ -1,10 +1,7 @@
 package engine;
 
 import engine.decoder.ArithmeticDecoder;
-import engine.util.EngineConstants;
-import engine.util.GenPair;
-import engine.util.InstructionStack;
-import engine.util.Result;
+import engine.util.*;
 import grammar.SimpleGParser;
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.tree.ParseTree;
@@ -19,7 +16,8 @@ public class EngineRunner {
 
     //We use a LIFO stack as the instruction on the last level is the one we work with first.
     public static engine.util.InstructionStack InstructionStack = new InstructionStack();
-    public static Stack<ParserRuleContext> Terminals = new Stack<>();
+    //This we use to store the INTEND, IDEND rules.
+    public static SearchableList Terminals = new SearchableList();
     public static Map<String, Result> Solved = new HashMap<>();
     public static int counter = 0;
 
@@ -49,7 +47,8 @@ public class EngineRunner {
 
             switch (type) {
                 case ARITHMETIC:
-                    ArithmeticDecoder.DecodeMathInstructionWarm(instruction);
+                    SimpleGParser.ExprContext exprInstruc = (SimpleGParser.ExprContext)instruction;
+                    ArithmeticDecoder.DecodeMathInstructionWarm(exprInstruc);
                     break;
             }
 
@@ -57,7 +56,8 @@ public class EngineRunner {
 
             switch (type){
                 case ARITHMETIC:
-                    ArithmeticDecoder.DecodeMathInstructionCold(instruction);
+                    SimpleGParser.ExprContext exprInstruc = (SimpleGParser.ExprContext)instruction;
+                    ArithmeticDecoder.DecodeMathInstructionCold(exprInstruc);
                     break;
             }
 
