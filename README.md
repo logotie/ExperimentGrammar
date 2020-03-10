@@ -11,8 +11,26 @@ There's going to be a lot that can be improved on, I'm reading and learning as I
 
 A language run on the JVM.
 
+I want to get it generating bytecode using Java.
+
+Then consume the bytecode with an interpreter/compiler written in C++.
+
+# Features I am working on (ranked by importance): 
+1. String assignment
+2. Number assignment
+3. Arithmetic expressions.
+4. for loops
+5. print expression
+6. if statement
+7. array
+
+## Features that will be added
+1. Comments
+2. Being able to add two arrays together using the '+' operator.
+3. Being able to add a value to an array using the '+' operator.
+4. Timer function
 ```
-string a="16"
+str a="16"
 
 num b=4
 
