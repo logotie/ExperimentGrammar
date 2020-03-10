@@ -11,12 +11,21 @@ There's going to be a lot that can be improved on, I'm reading and learning as I
 
 A language run on the JVM.
 
-# Goals
-*Get it running basically and generating a form of bytecode using Java.
-*Consume the bytecode using C++ and interpret/compile the program.
+I want to get it generating bytecode using Java.
+
+Then consume the bytecode with an interpreter/compiler written in C++.
+
+# Features I am working on (ranked by importance): 
+1. String assignment
+2. Number assignment
+3. Arithmetic expressions.
+4. for loops
+5. print expression
+6. if statement
+7. array
 
 ```
-string a="16"
+str a="16"
 
 num b=4
 
