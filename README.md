@@ -24,6 +24,11 @@ Then consume the bytecode with an interpreter/compiler written in C++.
 6. if statement
 7. array
 
+## Features that will be added
+1. Comments
+2. Being able to add two arrays together using the '+' operator.
+3. Being able to add a value to an array using the '+' operator.
+4. Timer function
 ```
 str a="16"
 
