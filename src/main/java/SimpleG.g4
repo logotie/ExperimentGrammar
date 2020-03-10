@@ -10,7 +10,12 @@ block:
     |expr
     |assignment
     |SINGLESPACE+
+    |sysfunc
     ;
+
+sysfunc:
+PRINT '(' STRINGCHARACTER expr STRINGCHARACTER ')'
+| PRINTLN '(' STRINGCHARACTER expr STRINGCHARACTER ')';
 
 
 assignment:
@@ -21,7 +26,9 @@ STRINGIDENT SINGLESPACE ID EQUALSIGN STRINGCHARACTER expr STRINGCHARACTER #assig
 |STRINGIDENT SINGLESPACE ID NONMUTABLE STRINGCHARACTER expr STRINGCHARACTER #assignstringnonmutable
 |NUMIDENT SINGLESPACE ID NONMUTABLE  expr  #assigndigitsnonmutable
 |ID NONMUTABLE STRINGCHARACTER expr STRINGCHARACTER  #assignstringnonmutable
-|ID NONMUTABLE expr #assigntextnonmutable;
+|ID NONMUTABLE expr #assigntextnonmutable
+|ID EQUALSIGN ARRSTART (arrvalue COMMA|arrvalue)+ ARREND #arraymutableassign
+|ID NONMUTABLE ARRSTART (arrvalue COMMA|arrvalue)+ ARREND #arraynonmutableassign;
 
 forloop:
 FORIDENT SINGLESPACE INT DOUBLEDOTKEYWORDFORLOOP INT SINGLESPACE DOKEYWORDFORLOOP STARTBRACKET block+ ENDBRACKET;
@@ -48,10 +55,14 @@ conditon: conditon('*'|'/') conditon #condmultdiv
     |   ID #condid
     ;
 
-
+arrvalue: INT
+| '"'+ID|INT +'"'
+;
 
 comment: COMMENTSIGN ID;
 
+PRINTLN:'println';
+PRINT:'print';
 COMMENTSIGN:'#';
 NONMUTABLE:':';
 ADD:'+';
@@ -74,10 +85,13 @@ DOKEYWORDFORLOOP:'do';
   ENDBRACKET:'}';
  ID : [a-zA-Z_] [a-zA-Z_0-9]*
   |[0-9]+ [a-zA-Z_]+
-  |','+;
+  ;
  INT : [0-9]+ ;
  SINGLESPACE: [' '];
 EQUALSIGN : '=';
  NEWLINE2: '\r'? '\n' -> skip;
  WS : [\t]+ -> skip;
  SPACE :' '+;
+ ARRSTART:'[';
+ ARREND:']';
+ COMMA:',';
