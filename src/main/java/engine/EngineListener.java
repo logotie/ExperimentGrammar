@@ -21,7 +21,7 @@ public class EngineListener extends SimpleGBaseListener {
 
     @Override public void enterAssignstringmutablesingletype(SimpleGParser.AssignstringmutablesingletypeContext ctx) {         assert ctx.children.size()>1;
 
-        System.out.println(ctx.getText()+":"+counter+"-Assign String mutable Count:"+ctx.children.size());
+        System.out.println(ctx.getText()+":"+counter+"-Assign String mutable str Count:"+ctx.children.size());
         //As having children greater than one in the node denotes a level
         if(ctx.children.size()>1) {
             InstructionStack.push(EngineConstants.Types.ASSIGNMUTABLE, ctx);
@@ -33,7 +33,7 @@ public class EngineListener extends SimpleGBaseListener {
 
     @Override public void enterAssigndigitsmutablesingletype(SimpleGParser.AssigndigitsmutablesingletypeContext ctx) {
 
-        System.out.println(ctx.getText()+":"+counter+"-Assign String mutable Count:"+ctx.children.size());
+        System.out.println(ctx.getText()+":"+counter+"-Assign digit mutable num Count:"+ctx.children.size());
         //As having children greater than one in the node denotes a level
         if(ctx.children.size()>1) {
             InstructionStack.push(EngineConstants.Types.ASSIGNMUTABLE, ctx);
@@ -44,7 +44,7 @@ public class EngineListener extends SimpleGBaseListener {
     }
 
     @Override public void enterAssignstringmutablechangetype(SimpleGParser.AssignstringmutablechangetypeContext ctx) {
-        System.out.println(ctx.getText()+":"+counter+"-Assign String mutable Count:"+ctx.children.size());
+        System.out.println(ctx.getText()+":"+counter+"-Assign String mutable 'a='c' Count:"+ctx.children.size());
         //As having children greater than one in the node denotes a level
         if(ctx.children.size()>1) {
             InstructionStack.push(EngineConstants.Types.ASSIGNMUTABLE, ctx);
@@ -55,7 +55,7 @@ public class EngineListener extends SimpleGBaseListener {
 
     @Override public void enterAssignmutable(SimpleGParser.AssignmutableContext ctx) {
 
-        System.out.println(ctx.getText()+":"+counter+"-Assign String mutable Count:"+ctx.children.size());
+        System.out.println(ctx.getText()+":"+counter+"-Assign mutable a=2 Count:"+ctx.children.size());
         //As having children greater than one in the node denotes a level
         if(ctx.children.size()>1) {
             InstructionStack.push(EngineConstants.Types.ASSIGNMUTABLE, ctx);
@@ -67,7 +67,7 @@ public class EngineListener extends SimpleGBaseListener {
 
     @Override public void enterAssignstringnonmutable(SimpleGParser.AssignstringnonmutableContext ctx) {
 
-        System.out.println(ctx.getText()+":"+counter+"-Assign String mutable Count:"+ctx.children.size());
+        System.out.println(ctx.getText()+":"+counter+"-Assign String mutable a:'3' Count:"+ctx.children.size());
         //As having children greater than one in the node denotes a level
         if(ctx.children.size()>1) {
             InstructionStack.push(EngineConstants.Types.ASSIGNNONMUTABLE, ctx);

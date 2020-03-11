@@ -10,7 +10,7 @@ public class TerminalExpr {
     private String rawValue;
 
     public TerminalExpr(ParserRuleContext terminalParseRule, Boolean isInt){
-        assert terminalRule.children.size()==1;
+        assert terminalParseRule.children.size()==1;
         this.terminalRule = terminalParseRule;
         this.isInt = isInt;
         rawValue = terminalParseRule.children.get(0).getText();
