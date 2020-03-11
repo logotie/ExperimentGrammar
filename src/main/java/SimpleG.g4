@@ -24,9 +24,9 @@ STRINGIDENT SINGLESPACE ID EQUALSIGN STRINGCHARACTER expr STRINGCHARACTER #assig
 |ID EQUALSIGN STRINGCHARACTER expr STRINGCHARACTER  #assignstringmutablechangetype
 |ID EQUALSIGN expr #assignmutable
 |STRINGIDENT SINGLESPACE ID NONMUTABLE STRINGCHARACTER expr STRINGCHARACTER #assignstringnonmutablesingletype
-|NUMIDENT SINGLESPACE ID NONMUTABLE  expr  #assigndigitsnonmutable
+|NUMIDENT SINGLESPACE ID NONMUTABLE  expr  #assigndigitsnonmutablesingletype
 |ID NONMUTABLE STRINGCHARACTER expr STRINGCHARACTER  #assignstringnonmutable
-|ID NONMUTABLE expr #assigntextnonmutable
+|ID NONMUTABLE expr #assigndigitsnonmutable
 |ID EQUALSIGN ARRSTART (arrvalue COMMA|arrvalue)+ ARREND #arraymutableassign
 |ID NONMUTABLE ARRSTART (arrvalue COMMA|arrvalue)+ ARREND #arraynonmutableassign;
 
