@@ -6,4 +6,12 @@ public class EngineConstants {
         ARITHMETIC,ASSIGNMUTABLE, ASSIGNNONMUTABLE;
     }
 
+    public enum VarTypes{
+        MUTABLENUM, MUTABLESTR, NONMUTABLESTR, NONMUTABLENUM;
+    }
+
+    public enum LiteralTypes{
+        NUM, STR
+    }
+
 }

@@ -26,8 +26,6 @@ public class ArithmeticDecoder {
 
     public static void DecodeMathInstructionCold(SimpleGParser.ExprContext instruction){
 
-        //1 WILL ALWAYS BE A TERMINAL
-
         //Get all the children
         var children = instruction.children;
 
@@ -72,13 +70,19 @@ public class ArithmeticDecoder {
         }
         else
         {
-            //we check solved.
+            //we get the solved
+            //pass to terminal
+            //return the result
         }
 
         return null;
     }
 
     //Here we enforce that when adding two variables together they must be of the same type.
+    //TWO STRINGS CAN BE ADDED TOGETHER
+    //TWO INTS CAN BE ADDED TOGETHER
+    //NO INTER MINGLE
+    //TODO Array + variable/literal of same type just appends to end of array
     private static Result rawTerminalCalc(TerminalExpr t, TerminalExpr t2, String op){
 
         if(t.isInt()){
