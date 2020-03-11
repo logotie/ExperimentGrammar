@@ -75,7 +75,7 @@ public class ArithmeticDecoder {
             //we check solved.
         }
 
-
+        return null;
     }
 
     //Here we enforce that when adding two variables together they must be of the same type.

@@ -1,21 +1,23 @@
 package engine.util;
 
 import grammar.SimpleGParser;
+import org.antlr.v4.runtime.ParserRuleContext;
 
 public class TerminalExpr {
 
-    private SimpleGParser.ExprContext expr;
+    private ParserRuleContext terminalRule;
     private boolean isInt;
     private String rawValue;
 
-    public TerminalExpr(SimpleGParser.ExprContext expr, Boolean isInt){
-        assert expr.children.size()==1;
-        this.expr = expr;
+    public TerminalExpr(ParserRuleContext terminalParseRule, Boolean isInt){
+        assert terminalRule.children.size()==1;
+        this.terminalRule = terminalParseRule;
         this.isInt = isInt;
+        rawValue = terminalParseRule.children.get(0).getText();
     }
 
-    public SimpleGParser.ExprContext getExpr(){
-        return expr;
+    public ParserRuleContext getExpr(){
+        return terminalRule;
     }
 
     public String getString(){

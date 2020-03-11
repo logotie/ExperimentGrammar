@@ -4,6 +4,7 @@ import engine.util.EngineConstants;
 import engine.util.TerminalExpr;
 import grammar.SimpleGBaseListener;
 import grammar.SimpleGParser;
+import jdk.jshell.spi.ExecutionControl;
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.tree.ParseTreeWalker;
 
@@ -17,42 +18,6 @@ public class EngineListener extends SimpleGBaseListener {
 
     int counter = 0;
 
-
-    @Override
-    public void enterAssigntype(SimpleGParser.AssigntypeContext ctx){
-
-
-        System.out.println(ctx.getText()+":"+counter+"-assignment Children Count:"+ctx.children.size());
-
-        assert ctx.children.size()>1;
-
-        //As having children greater than one in the node denotes a level
-        if(ctx.children.size()>1) {
-            InstructionStack.push(EngineConstants.Types.ASSIGN, ctx);
-        }
-
-        //var a = a+1;
-        //var a = a+a+a/4-a-a;
-        //var a = expr+expr+expr/Int-expr-expr;
-
-
-
-
-        //get the children
-        //check if they are any expressions in the children
-        //increment level by 1
-
-        //while loop
-        //Get children
-        //Pass children to function returns true or false, if express
-        //If true, pass to process exp
-
-
-        //Process exp
-        //Adds current exp to stack
-
-        //System.out.println("AssignmentSpecial");
-    }
 
     @Override public void enterAssignstringmutablesingletype(SimpleGParser.AssignstringmutablesingletypeContext ctx) {         assert ctx.children.size()>1;
 
@@ -191,19 +156,23 @@ public class EngineListener extends SimpleGBaseListener {
 
     @Override public void enterMinus(SimpleGParser.MinusContext ctx) {
         System.out.println(ctx.toString());
+        throw new UnsupportedOperationException();
     }
 
     @Override public void enterLessthancompare(SimpleGParser.LessthancompareContext ctx) {
         System.out.println(ctx.toString());
+        throw new UnsupportedOperationException();
     }
 
     @Override public void enterMul(SimpleGParser.MulContext ctx) {
         System.out.println(ctx.toString());
+        throw new UnsupportedOperationException();
     }
-    
+
 
     @Override public void enterDiv(SimpleGParser.DivContext ctx) {
         System.out.println(ctx.toString());
+        throw new UnsupportedOperationException();
     }
 
     @Override public void enterIdend(SimpleGParser.IdendContext ctx) {
@@ -219,6 +188,7 @@ public class EngineListener extends SimpleGBaseListener {
 
     @Override public void enterMorethancompare(SimpleGParser.MorethancompareContext ctx) {
         System.out.println(ctx.toString());
+        throw new UnsupportedOperationException();
     }
 
     //FUNCTIONAL
@@ -238,6 +208,7 @@ public class EngineListener extends SimpleGBaseListener {
 
     @Override public void enterEquality(SimpleGParser.EqualityContext ctx) {
         System.out.println(ctx.getText());
+        throw new UnsupportedOperationException();
     }
 
 }
