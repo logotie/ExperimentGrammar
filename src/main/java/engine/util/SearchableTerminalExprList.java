@@ -11,7 +11,7 @@ public class SearchableTerminalExprList {
         privInstrStack.add(instruc);
     }
 
-    public boolean existsByHashCodeInnerExpr(int hashCode){
+    public boolean existsByHashCodeInnerExprDeprecated(int hashCode){
 
         long matching = privInstrStack.stream().filter(n -> n.getExpr().hashCode()==hashCode).count();
 

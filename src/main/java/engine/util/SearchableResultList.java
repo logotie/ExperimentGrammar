@@ -11,7 +11,8 @@ public class SearchableResultList {
         privResults.add(result);
     }
 
-    public boolean existsByHashCode(int hashCode){
+    //TODO WRONG!!!! NEED NEW SEARCH TERM
+    public boolean existsByHashCodeDeprecated(int hashCode){
 
         long matching = privResults.stream().filter(n -> n.hashCode()==hashCode).count();
 
