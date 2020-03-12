@@ -223,6 +223,7 @@ public class SimpleGParser extends Parser {
 			return getRuleContext(ExprContext.class,0);
 		}
 		public AssignmentContext assignment() {
+			Boolean mutable = true;
 			UUID uuid = UUID.randomUUID();
 			return getRuleContext(AssignmentContext.class,0);
 		}
@@ -440,7 +441,9 @@ public class SimpleGParser extends Parser {
 		public ExprContext expr() {
 			return getRuleContext(ExprContext.class,0);
 		}
-		public AssignmutableContext(AssignmentContext ctx) { copyFrom(ctx); }
+		public AssignmutableContext(AssignmentContext ctx) {
+			copyFrom(ctx);
+		}
 		@Override
 		public void enterRule(ParseTreeListener listener) {
 			if ( listener instanceof SimpleGListener ) ((SimpleGListener)listener).enterAssignmutable(this);
@@ -1097,6 +1100,7 @@ public class SimpleGParser extends Parser {
 	}
 
 	public static class ExprContext extends ParserRuleContext {
+
 		public ExprContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}

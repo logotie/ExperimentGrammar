@@ -24,7 +24,8 @@ public class EngineListener extends SimpleGBaseListener {
         System.out.println(ctx.getText()+":"+counter+"-Assign String mutable str Count:"+ctx.children.size());
         //As having children greater than one in the node denotes a level
         if(ctx.children.size()>1) {
-            InstructionStack.push(EngineConstants.Types.ASSIGNMUTABLE, ctx);
+            InstructionStack.push
+                    (EngineConstants.Types.ASSIGNMUTABLE, ctx);
         }else {
             throw new RuntimeException();
         }

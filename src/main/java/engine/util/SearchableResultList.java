@@ -12,9 +12,9 @@ public class SearchableResultList {
     }
 
     //TODO WRONG!!!! NEED NEW SEARCH TERM
-    public boolean existsByHashCodeDeprecated(int hashCode){
+    public boolean existsByUniqueCode(int hashCode){
 
-        long matching = privResults.stream().filter(n -> n.hashCode()==hashCode).count();
+        long matching = privResults.stream().filter(n -> n.).count();
 
         if(matching==0){
             return false;
@@ -23,7 +23,7 @@ public class SearchableResultList {
     }
 
     public Result getByHashCode(int hashCode){
-        assert existsByHashCode(hashCode);
+        assert existsByUniqueCode(hashCode);
 
         Result terminal = privResults.stream().filter(n -> n.hashCode()==hashCode)
                 .findAny().get();

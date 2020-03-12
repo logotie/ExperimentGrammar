@@ -21,7 +21,7 @@ public class SearchableTerminalExprList {
         return true;
     }
 
-    public TerminalExpr getByHashCode(int hashCode){
+    public TerminalExpr getByUuidCode(int hashCode){
         assert existsByHashCodeInnerExpr(hashCode);
 
         TerminalExpr terminal = privInstrStack.stream().filter(n -> n.hashCode()==hashCode)

@@ -81,7 +81,7 @@ public class ArithmeticDecoder {
     //Here we enforce that when adding two variables together they must be of the same type.
     //TWO STRINGS CAN BE ADDED TOGETHER
     //TWO INTS CAN BE ADDED TOGETHER
-    //NO INTER MINGLE
+    //INT = STRING + INT <---- NO
     //TODO Array + variable/literal of same type just appends to end of array
     private static Result rawTerminalCalc(TerminalExpr t, TerminalExpr t2, String op){
 
@@ -115,7 +115,7 @@ public class ArithmeticDecoder {
     private static TerminalExpr retrieveMatchingExpr(ExprContext exprContext){
         assert Terminals.existsByHashCodeInnerExpr(exprContext.hashCode());
 
-        return Terminals.getByHashCode(exprContext.hashCode());
+        return Terminals.getByUuidCode(exprContext.hashCode());
     }
 
 }
