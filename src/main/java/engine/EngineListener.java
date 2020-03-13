@@ -2,6 +2,7 @@ package engine;
 
 import engine.util.EngineConstants;
 import engine.util.TerminalExpr;
+import engine.util.TypeHelper;
 import grammar.SimpleGBaseListener;
 import grammar.SimpleGParser;
 import jdk.jshell.spi.ExecutionControl;
@@ -24,8 +25,7 @@ public class EngineListener extends SimpleGBaseListener {
         System.out.println(ctx.getText()+":"+counter+"-Assign String mutable str Count:"+ctx.children.size());
         //As having children greater than one in the node denotes a level
         if(ctx.children.size()>1) {
-            InstructionStack.push
-                    (EngineConstants.Types.ASSIGNMUTABLE, ctx);
+            InstructionStack.push(EngineConstants.Types.ASSIGNMUTABLE, ctx, EngineConstants.InstructionTypes.ASSIGNMENT);
         }else {
             throw new RuntimeException();
         }
@@ -37,7 +37,7 @@ public class EngineListener extends SimpleGBaseListener {
         System.out.println(ctx.getText()+":"+counter+"-Assign digit mutable num Count:"+ctx.children.size());
         //As having children greater than one in the node denotes a level
         if(ctx.children.size()>1) {
-            InstructionStack.push(EngineConstants.Types.ASSIGNMUTABLE, ctx);
+            InstructionStack.push(EngineConstants.Types.ASSIGNMUTABLE, ctx, EngineConstants.InstructionTypes.ASSIGNMENT);
         }else {
             throw new RuntimeException();
         }
@@ -48,7 +48,7 @@ public class EngineListener extends SimpleGBaseListener {
         System.out.println(ctx.getText()+":"+counter+"-Assign String mutable 'a='c' Count:"+ctx.children.size());
         //As having children greater than one in the node denotes a level
         if(ctx.children.size()>1) {
-            InstructionStack.push(EngineConstants.Types.ASSIGNMUTABLE, ctx);
+            InstructionStack.push(EngineConstants.Types.ASSIGNMUTABLE, ctx, EngineConstants.InstructionTypes.ASSIGNMENT);
         }else {
             throw new RuntimeException();
         }
@@ -141,9 +141,13 @@ public class EngineListener extends SimpleGBaseListener {
     @Override public void enterArrvalue(SimpleGParser.ArrvalueContext ctx) {
 
         System.out.println(ctx.getText());
+
+        boolean isArrValueStr = TypeHelper.IsParserContextString(ctx);
+
         assert ctx.children.size()==1;
         if(ctx.children.size()==1){
-            TerminalExpr term = new TerminalExpr(ctx, true);
+            boolean isInt = !isArrValueStr;
+            TerminalExpr term = new TerminalExpr(ctx, isInt, EngineConstants.TerminalTypes.ARRVALUE);
             Terminals.add(term);
         }else{
             throw new RuntimeException();
@@ -191,10 +195,12 @@ public class EngineListener extends SimpleGBaseListener {
 
     //THIS WILL BE FROM [A-Z] but it could be a
     @Override public void enterIdend(SimpleGParser.IdendContext ctx) {
+        boolean isArrValueStr = TypeHelper.IsParserContextString(ctx);
+
         System.out.println(ctx.getText());
         assert ctx.children.size()==1;
         if(ctx.children.size()==1){
-            TerminalExpr term = new TerminalExpr(ctx, true);
+            TerminalExpr term = new TerminalExpr(ctx, !isArrValueStr, EngineConstants.TerminalTypes.EXPR);
             Terminals.add(term);
         }else{
             throw new RuntimeException();
@@ -211,10 +217,13 @@ public class EngineListener extends SimpleGBaseListener {
         counter++;
         System.out.println(ctx.getText()+":"+counter+"-IntEnd Children Count:"+ctx.children.size());
 
+        boolean isArrValueStr = TypeHelper.IsParserContextString(ctx);
+
+
         assert ctx.children.size()==1;
 
         if(ctx.children.size()==1){
-            TerminalExpr term = new TerminalExpr(ctx, true);
+            TerminalExpr term = new TerminalExpr(ctx, !isArrValueStr, EngineConstants.TerminalTypes.EXPR);
             Terminals.add(term);
         }else{
             throw new RuntimeException();

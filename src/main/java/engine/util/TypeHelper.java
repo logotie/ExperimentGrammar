@@ -18,7 +18,7 @@ public class TypeHelper {
         throw new UnsupportedOperationException();
     }
 
-    public static boolean IsExprString(ExprContext expr){
+    public static boolean IsParserContextString(ParserRuleContext expr){
         assert expr.children.size() == 1;
         //Ensure that children is 1
 
