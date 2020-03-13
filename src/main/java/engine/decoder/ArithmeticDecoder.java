@@ -4,6 +4,7 @@ import engine.util.Result;
 import engine.util.TerminalExpr;
 import grammar.SimpleGParser;
 import grammar.SimpleGParser.ExprContext;
+import org.antlr.v4.runtime.ParserRuleContext;
 
 import static engine.EngineRunner.Terminals;
 
@@ -85,16 +86,15 @@ public class ArithmeticDecoder {
     //TODO Array + variable/literal of same type just appends to end of array
     private static Result rawTerminalCalc(TerminalExpr t, TerminalExpr t2, String op){
 
-        if(t.isInt()){
-            int temp = t.getInt();
-            if(t2.isInt()){
-                int result = temp+t2.getInt();
-            }else{
+        if(t.isInt()&&t2.isInt()){
 
-            }
         }
-        
-        return null;
+
+        if(!t.isInt() && !t2.isInt()){
+
+        }
+
+        throw new RuntimeException();
     }
 
     private static boolean isExprTerminal(ExprContext exprContext){
@@ -103,7 +103,7 @@ public class ArithmeticDecoder {
 
         if(exprContext.children.size()==1
                 &&
-                Terminals.existsByHashCodeInnerExpr(exprContext.hashCode()))
+                Terminals.exists(exprContext))
         {
             return true;
         }
@@ -113,9 +113,9 @@ public class ArithmeticDecoder {
     }
 
     private static TerminalExpr retrieveMatchingExpr(ExprContext exprContext){
-        assert Terminals.existsByHashCodeInnerExpr(exprContext.hashCode());
+        assert Terminals.exists(exprContext);
 
-        return Terminals.getByUuidCode(exprContext.hashCode());
+        return Terminals.getByObjRef((ParserRuleContext)exprContext);
     }
 
 }

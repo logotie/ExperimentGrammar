@@ -1,5 +1,8 @@
 package engine.util;
 
+import grammar.SimpleGParser;
+import org.antlr.v4.runtime.ParserRuleContext;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,27 +14,27 @@ public class SearchableTerminalExprList {
         privInstrStack.add(instruc);
     }
 
-    public boolean existsByHashCodeInnerExprDeprecated(int hashCode){
+    public boolean exists(ParserRuleContext expr){
 
-        long matching = privInstrStack.stream().filter(n -> n.getExpr().hashCode()==hashCode).count();
-
-        if(matching==0){
-            return false;
+        for(TerminalExpr term: privInstrStack){
+            if(term.getExpr()==(ParserRuleContext)expr){
+                return true;
+            }
         }
-        return true;
+
+        return false;
     }
 
-    public TerminalExpr getByUuidCode(int hashCode){
-        assert existsByHashCodeInnerExpr(hashCode);
+    public TerminalExpr getByObjRef(ParserRuleContext parserRuleContext){
+        assert exists(parserRuleContext);
 
-        TerminalExpr terminal = privInstrStack.stream().filter(n -> n.hashCode()==hashCode)
-                .findAny().get();
+        for(TerminalExpr term: privInstrStack){
+            if(term.getExpr()==parserRuleContext){
+                return term;
+            }
+        }
 
-        long matching = privInstrStack.stream().filter(n -> n.getExpr().hashCode()==hashCode).count();
-
-        assert matching == 1;
-
-        return terminal;
+        return null;
     }
 
 
