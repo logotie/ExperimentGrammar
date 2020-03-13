@@ -59,7 +59,7 @@ public class EngineListener extends SimpleGBaseListener {
         System.out.println(ctx.getText()+":"+counter+"-Assign mutable a=2 Count:"+ctx.children.size());
         //As having children greater than one in the node denotes a level
         if(ctx.children.size()>1) {
-            InstructionStack.push(EngineConstants.Types.ASSIGNMUTABLE, ctx);
+            InstructionStack.push(EngineConstants.Types.ASSIGNMUTABLE, ctx, EngineConstants.InstructionTypes.ASSIGNMENT);
         }else {
             throw new RuntimeException();
         }
@@ -71,7 +71,7 @@ public class EngineListener extends SimpleGBaseListener {
         System.out.println(ctx.getText()+":"+counter+"-Assign String mutable a:'3' Count:"+ctx.children.size());
         //As having children greater than one in the node denotes a level
         if(ctx.children.size()>1) {
-            InstructionStack.push(EngineConstants.Types.ASSIGNNONMUTABLE, ctx);
+            InstructionStack.push(EngineConstants.Types.ASSIGNNONMUTABLE, ctx, EngineConstants.InstructionTypes.ASSIGNMENT);
         }else {
             throw new RuntimeException();
         }
@@ -82,7 +82,7 @@ public class EngineListener extends SimpleGBaseListener {
         System.out.println(ctx.getText()+":"+counter+"-Assign String mutable Count:"+ctx.children.size());
         //As having children greater than one in the node denotes a level
         if(ctx.children.size()>1) {
-            InstructionStack.push(EngineConstants.Types.ASSIGNNONMUTABLE, ctx);
+            InstructionStack.push(EngineConstants.Types.ASSIGNNONMUTABLE, ctx, EngineConstants.InstructionTypes.ASSIGNMENT);
         }else {
             throw new RuntimeException();
         }
@@ -94,7 +94,7 @@ public class EngineListener extends SimpleGBaseListener {
         System.out.println(ctx.getText()+":"+counter+"-Assign String mutable Count:"+ctx.children.size());
         //As having children greater than one in the node denotes a level
         if(ctx.children.size()>1) {
-            InstructionStack.push(EngineConstants.Types.ASSIGNNONMUTABLE, ctx);
+            InstructionStack.push(EngineConstants.Types.ASSIGNNONMUTABLE, ctx, EngineConstants.InstructionTypes.ASSIGNMENT);
         }else {
             throw new RuntimeException();
         }
@@ -107,7 +107,7 @@ public class EngineListener extends SimpleGBaseListener {
         System.out.println(ctx.getText()+":"+counter+"-Assign String mutable Count:"+ctx.children.size());
         //As having children greater than one in the node denotes a level
         if(ctx.children.size()>1) {
-            InstructionStack.push(EngineConstants.Types.ASSIGNNONMUTABLE, ctx);
+            InstructionStack.push(EngineConstants.Types.ASSIGNNONMUTABLE, ctx, EngineConstants.InstructionTypes.ASSIGNMENT);
         }else {
             throw new RuntimeException();
         }
@@ -119,7 +119,7 @@ public class EngineListener extends SimpleGBaseListener {
         System.out.println(ctx.getText()+":"+counter+"-Assign String mutable Count:"+ctx.children.size());
         //As having children greater than one in the node denotes a level
         if(ctx.children.size()>1) {
-            InstructionStack.push(EngineConstants.Types.ASSIGNMUTABLE, ctx);
+            InstructionStack.push(EngineConstants.Types.ASSIGNMUTABLE, ctx, EngineConstants.InstructionTypes.ASSIGNMENT);
         }else {
             throw new RuntimeException();
         }
@@ -131,7 +131,7 @@ public class EngineListener extends SimpleGBaseListener {
         System.out.println(ctx.getText()+":"+counter+"-Assign String mutable Count:"+ctx.children.size());
         //As having children greater than one in the node denotes a level
         if(ctx.children.size()>1) {
-            InstructionStack.push(EngineConstants.Types.ASSIGNNONMUTABLE, ctx);
+            InstructionStack.push(EngineConstants.Types.ASSIGNNONMUTABLE, ctx, EngineConstants.InstructionTypes.ASSIGNMENT);
         }else {
             throw new RuntimeException();
         }
@@ -161,7 +161,7 @@ public class EngineListener extends SimpleGBaseListener {
         System.out.println(ctx.getText()+":"+counter+"-Add Children Count:"+ctx.children.size());
         //As having children greater than one in the node denotes a level
         if(ctx.children.size()>1) {
-            InstructionStack.push(EngineConstants.Types.ARITHMETIC, ctx);
+            InstructionStack.push(EngineConstants.Types.ARITHMETIC, ctx, EngineConstants.InstructionTypes.EXPR);
         }else {
             throw new RuntimeException();
         }
