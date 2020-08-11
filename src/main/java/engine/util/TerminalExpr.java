@@ -1,9 +1,6 @@
 package engine.util;
 
-import grammar.SimpleGParser;
 import org.antlr.v4.runtime.ParserRuleContext;
-
-import java.util.UUID;
 
 public class TerminalExpr {
 

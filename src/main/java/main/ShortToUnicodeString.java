@@ -1,14 +1,13 @@
 package main;
-import grammar.SimpleGBaseListener;
-import grammar.SimpleGParser;
+import grammar.*;
 
 /** Convert short array inits like {1,2,3} to "\u0001\u0002\u0003" */
-public class ShortToUnicodeString extends SimpleGBaseListener {
+public class ShortToUnicodeString extends SimpleDraftGBaseListener {
     /**
      * Translate { to "
      */
     @Override
-    public void enterStat(SimpleGParser.StatContext ctx) {
+    public void enterStat(SimpleDraftGParser.StatContext ctx) {
         System.out.println("Enter Stat");
     }
 
@@ -16,7 +15,7 @@ public class ShortToUnicodeString extends SimpleGBaseListener {
      * Translate } to "
      */
     @Override
-    public void exitStat(SimpleGParser.StatContext ctx) {
+    public void exitStat(SimpleDraftGParser.StatContext ctx) {
         System.out.print("Exit Stat");
     }
 
@@ -24,7 +23,7 @@ public class ShortToUnicodeString extends SimpleGBaseListener {
      * Translate integers to 4-digit hexadecimal strings prefixed with \\u
      */
     @Override
-    public void enterBlock(SimpleGParser.BlockContext ctx) {
+    public void enterBlock(SimpleDraftGParser.BlockContext ctx) {
 // Assumes no nested array initializers
         //int value = Integer.valueOf(ctx.INT().getText());
         //System.out.printf("\\u%04x", value);
@@ -40,12 +39,12 @@ public class ShortToUnicodeString extends SimpleGBaseListener {
 
 
     @Override
-    public void enterForloop(SimpleGParser.ForloopContext forloopContext){
+    public void enterForloop(SimpleDraftGParser.ForloopContext forloopContext){
         System.out.println("For loop");
     }
 
     @Override
-    public void enterIfstat(SimpleGParser.IfstatContext ifStatementContext){
+    public void enterIfstat(SimpleDraftGParser.IfstatContext ifStatementContext){
         System.out.println("if statement");
     }
 

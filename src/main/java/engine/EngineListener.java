@@ -3,81 +3,44 @@ package engine;
 import engine.util.EngineConstants;
 import engine.util.TerminalExpr;
 import engine.util.TypeHelper;
-import grammar.SimpleGBaseListener;
-import grammar.SimpleGParser;
-import jdk.jshell.spi.ExecutionControl;
-import org.antlr.v4.runtime.ParserRuleContext;
-import org.antlr.v4.runtime.tree.ParseTreeWalker;
-
-import java.util.List;
-import java.util.Stack;
+import grammar.SimpleDraftGBaseListener;
+import grammar.SimpleDraftGParser;
 
 import static engine.EngineRunner.InstructionStack;
 import static engine.EngineRunner.Terminals;
 
-public class EngineListener extends SimpleGBaseListener {
+public class EngineListener extends SimpleDraftGBaseListener {
 
     int counter = 0;
 
 
-    @Override public void enterAssignstringmutablesingletype(SimpleGParser.AssignstringmutablesingletypeContext ctx) {         assert ctx.children.size()>1;
+    @Override public void enterAssignString(SimpleDraftGParser.AssignStringContext ctx) {         assert ctx.children.size()>1;
 
         System.out.println(ctx.getText()+":"+counter+"-Assign String mutable str Count:"+ctx.children.size());
         //As having children greater than one in the node denotes a level
         if(ctx.children.size()>1) {
             InstructionStack.push(EngineConstants.Types.ASSIGNMUTABLE, ctx, EngineConstants.InstructionTypes.ASSIGNMENT);
         }else {
+            //it's a terminal
             throw new RuntimeException();
         }
 
     }
 
-    @Override public void enterAssigndigitsmutablesingletype(SimpleGParser.AssigndigitsmutablesingletypeContext ctx) {
+    @Override public void enterAssignDigits(SimpleDraftGParser.AssignDigitsContext ctx) {
 
         System.out.println(ctx.getText()+":"+counter+"-Assign digit mutable num Count:"+ctx.children.size());
         //As having children greater than one in the node denotes a level
         if(ctx.children.size()>1) {
             InstructionStack.push(EngineConstants.Types.ASSIGNMUTABLE, ctx, EngineConstants.InstructionTypes.ASSIGNMENT);
         }else {
+            //it's a terminal
             throw new RuntimeException();
         }
 
     }
 
-    @Override public void enterAssignstringmutablechangetype(SimpleGParser.AssignstringmutablechangetypeContext ctx) {
-        System.out.println(ctx.getText()+":"+counter+"-Assign String mutable 'a='c' Count:"+ctx.children.size());
-        //As having children greater than one in the node denotes a level
-        if(ctx.children.size()>1) {
-            InstructionStack.push(EngineConstants.Types.ASSIGNMUTABLE, ctx, EngineConstants.InstructionTypes.ASSIGNMENT);
-        }else {
-            throw new RuntimeException();
-        }
-    }
-
-    @Override public void enterAssignmutable(SimpleGParser.AssignmutableContext ctx) {
-
-        System.out.println(ctx.getText()+":"+counter+"-Assign mutable a=2 Count:"+ctx.children.size());
-        //As having children greater than one in the node denotes a level
-        if(ctx.children.size()>1) {
-            InstructionStack.push(EngineConstants.Types.ASSIGNMUTABLE, ctx, EngineConstants.InstructionTypes.ASSIGNMENT);
-        }else {
-            throw new RuntimeException();
-        }
-
-    }
-
-    @Override public void enterAssignstringnonmutable(SimpleGParser.AssignstringnonmutableContext ctx) {
-
-        System.out.println(ctx.getText()+":"+counter+"-Assign String mutable a:'3' Count:"+ctx.children.size());
-        //As having children greater than one in the node denotes a level
-        if(ctx.children.size()>1) {
-            InstructionStack.push(EngineConstants.Types.ASSIGNNONMUTABLE, ctx, EngineConstants.InstructionTypes.ASSIGNMENT);
-        }else {
-            throw new RuntimeException();
-        }
-    }
-
-    @Override public void enterAssigndigitsnonmutable(SimpleGParser.AssigndigitsnonmutableContext ctx) {
+    @Override public void enterAssignNumArray(SimpleDraftGParser.AssignNumArrayContext ctx) {
 
         System.out.println(ctx.getText()+":"+counter+"-Assign String mutable Count:"+ctx.children.size());
         //As having children greater than one in the node denotes a level
@@ -89,7 +52,7 @@ public class EngineListener extends SimpleGBaseListener {
 
     }
 
-    @Override public void enterAssigndigitsnonmutablesingletype(SimpleGParser.AssigndigitsnonmutablesingletypeContext ctx) {
+    @Override public void enterAssignStrArray(SimpleDraftGParser.AssignStrArrayContext ctx) {
 
         System.out.println(ctx.getText()+":"+counter+"-Assign String mutable Count:"+ctx.children.size());
         //As having children greater than one in the node denotes a level
@@ -101,44 +64,7 @@ public class EngineListener extends SimpleGBaseListener {
 
     }
 
-
-    @Override public void enterAssignstringnonmutablesingletype(SimpleGParser.AssignstringnonmutablesingletypeContext ctx) {
-
-        System.out.println(ctx.getText()+":"+counter+"-Assign String mutable Count:"+ctx.children.size());
-        //As having children greater than one in the node denotes a level
-        if(ctx.children.size()>1) {
-            InstructionStack.push(EngineConstants.Types.ASSIGNNONMUTABLE, ctx, EngineConstants.InstructionTypes.ASSIGNMENT);
-        }else {
-            throw new RuntimeException();
-        }
-
-    }
-
-    @Override public void enterArraymutableassign(SimpleGParser.ArraymutableassignContext ctx) {
-
-        System.out.println(ctx.getText()+":"+counter+"-Assign String mutable Count:"+ctx.children.size());
-        //As having children greater than one in the node denotes a level
-        if(ctx.children.size()>1) {
-            InstructionStack.push(EngineConstants.Types.ASSIGNMUTABLE, ctx, EngineConstants.InstructionTypes.ASSIGNMENT);
-        }else {
-            throw new RuntimeException();
-        }
-
-    }
-
-    @Override public void enterArraynonmutableassign(SimpleGParser.ArraynonmutableassignContext ctx) {
-
-        System.out.println(ctx.getText()+":"+counter+"-Assign String mutable Count:"+ctx.children.size());
-        //As having children greater than one in the node denotes a level
-        if(ctx.children.size()>1) {
-            InstructionStack.push(EngineConstants.Types.ASSIGNNONMUTABLE, ctx, EngineConstants.InstructionTypes.ASSIGNMENT);
-        }else {
-            throw new RuntimeException();
-        }
-
-    }
-
-    @Override public void enterArrvalue(SimpleGParser.ArrvalueContext ctx) {
+    @Override public void enterArrvalue(SimpleDraftGParser.ArrvalueContext ctx) {
 
         System.out.println(ctx.getText());
 
@@ -157,7 +83,7 @@ public class EngineListener extends SimpleGBaseListener {
 
 
     //FUNCTIONAL
-    @Override public void enterAdd(SimpleGParser.AddContext ctx) {
+    @Override public void enterAdd(SimpleDraftGParser.AddContext ctx) {
         counter++;
 
         assert ctx.children.size()>1;
@@ -172,29 +98,29 @@ public class EngineListener extends SimpleGBaseListener {
 
     }
 
-    @Override public void enterMinus(SimpleGParser.MinusContext ctx) {
+    @Override public void enterMinus(SimpleDraftGParser.MinusContext ctx) {
         System.out.println(ctx.toString());
         throw new UnsupportedOperationException();
     }
 
-    @Override public void enterLessthancompare(SimpleGParser.LessthancompareContext ctx) {
+    @Override public void enterLessthancompare(SimpleDraftGParser.LessthancompareContext ctx) {
         System.out.println(ctx.toString());
         throw new UnsupportedOperationException();
     }
 
-    @Override public void enterMul(SimpleGParser.MulContext ctx) {
+    @Override public void enterMul(SimpleDraftGParser.MulContext ctx) {
         System.out.println(ctx.toString());
         throw new UnsupportedOperationException();
     }
 
 
-    @Override public void enterDiv(SimpleGParser.DivContext ctx) {
+    @Override public void enterDiv(SimpleDraftGParser.DivContext ctx) {
         System.out.println(ctx.toString());
         throw new UnsupportedOperationException();
     }
 
     //THIS WILL BE FROM [A-Z] but it could be a
-    @Override public void enterIdend(SimpleGParser.IdendContext ctx) {
+    @Override public void enterIdend(SimpleDraftGParser.IdendContext ctx) {
         boolean isArrValueStr = TypeHelper.IsParserContextString(ctx);
 
         System.out.println(ctx.getText());
@@ -207,13 +133,13 @@ public class EngineListener extends SimpleGBaseListener {
         }
     }
 
-    @Override public void enterMorethancompare(SimpleGParser.MorethancompareContext ctx) {
+    @Override public void enterMorethancompare(SimpleDraftGParser.MorethancompareContext ctx) {
         System.out.println(ctx.toString());
         throw new UnsupportedOperationException();
     }
 
     //FUNCTIONAL
-    @Override public void enterIntend(SimpleGParser.IntendContext ctx) {
+    @Override public void enterIntend(SimpleDraftGParser.IntendContext ctx) {
         counter++;
         System.out.println(ctx.getText()+":"+counter+"-IntEnd Children Count:"+ctx.children.size());
 
@@ -230,7 +156,7 @@ public class EngineListener extends SimpleGBaseListener {
         }
     }
 
-    @Override public void enterEquality(SimpleGParser.EqualityContext ctx) {
+    @Override public void enterEquality(SimpleDraftGParser.EqualityContext ctx) {
         System.out.println(ctx.getText());
         throw new UnsupportedOperationException();
     }

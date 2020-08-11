@@ -1,12 +1,12 @@
 package main;
 
 import engine.InstructionRunner;
+import grammar.SimpleDraftGLexer;
+import grammar.SimpleDraftGParser;
 import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.tree.ParseTree;
 import org.antlr.v4.runtime.tree.ParseTreeWalker;
-import grammar.SimpleGLexer;
-import grammar.SimpleGParser;
 
 import java.io.File;
 import java.nio.charset.StandardCharsets;
@@ -18,7 +18,7 @@ import java.util.Queue;
 
 public class Starter {
 
-    public static Queue<SimpleGParser.BlockContext> Global_Blocks_iq = new LinkedList<SimpleGParser.BlockContext>();
+    public static Queue<SimpleDraftGParser.BlockContext> Global_Blocks_iq = new LinkedList<SimpleDraftGParser.BlockContext>();
 
 
     public static void main(String[] args) throws Exception {
@@ -33,13 +33,13 @@ public class Starter {
         ANTLRInputStream input = new ANTLRInputStream(content);
 
         // create a lexer that feeds off of input CharStream
-        SimpleGLexer lexer = new SimpleGLexer(input);
+        SimpleDraftGLexer lexer = new SimpleDraftGLexer(input);
 
         // create a buffer of tokens pulled from the lexer
         CommonTokenStream tokens = new CommonTokenStream(lexer);
 
         // create a parser that feeds off the tokens buffer
-        SimpleGParser parser = new SimpleGParser(tokens);
+        SimpleDraftGParser parser = new SimpleDraftGParser(tokens);
         ParseTree tree = parser.stat(); // begin parsing at init rule
 
 

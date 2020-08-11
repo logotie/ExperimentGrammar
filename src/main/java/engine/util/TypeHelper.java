@@ -1,9 +1,6 @@
 package engine.util;
 
-import grammar.SimpleGParser.ExprContext;
-import jdk.jshell.spi.ExecutionControl;
 import org.antlr.v4.runtime.ParserRuleContext;
-import org.antlr.v4.runtime.Token;
 import org.antlr.v4.runtime.tree.ParseTree;
 
 import java.util.List;

@@ -2,14 +2,12 @@ package engine;
 
 import engine.decoder.ArithmeticDecoder;
 import engine.util.*;
-import grammar.SimpleGParser;
+import grammar.SimpleDraftGParser;
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.tree.ParseTree;
 import org.antlr.v4.runtime.tree.ParseTreeWalker;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class EngineRunner {
 
@@ -20,7 +18,7 @@ public class EngineRunner {
     public static SearchableResultList Solved = new SearchableResultList();
     public static int counter = 0;
 
-    public void ProcessBlock(SimpleGParser.BlockContext ctx){
+    public void ProcessBlock(SimpleDraftGParser.BlockContext ctx){
         //We have block context
         List<ParseTree> nodes = ctx.children;
         //Gonna walk it
@@ -46,7 +44,7 @@ public class EngineRunner {
 
             switch (type) {
                 case ARITHMETIC:
-                    SimpleGParser.ExprContext exprInstruc = (SimpleGParser.ExprContext)instruction;
+                    SimpleDraftGParser.ExprContext exprInstruc = (SimpleDraftGParser.ExprContext)instruction;
                     ArithmeticDecoder.DecodeMathInstructionWarm(exprInstruc);
                     break;
             }
@@ -55,7 +53,7 @@ public class EngineRunner {
 
             switch (type){
                 case ARITHMETIC:
-                    SimpleGParser.ExprContext exprInstruc = (SimpleGParser.ExprContext)instruction;
+                    SimpleDraftGParser.ExprContext exprInstruc = (SimpleDraftGParser.ExprContext)instruction;
                     ArithmeticDecoder.DecodeMathInstructionCold(exprInstruc);
                     break;
             }

@@ -2,7 +2,9 @@ grammar SimpleDraftG;
 
 prog: stat;
 
-stat:  block+;
+stat:
+block+
+|;
 
 block:
     forloop
