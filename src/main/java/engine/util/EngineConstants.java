@@ -19,7 +19,7 @@ public class EngineConstants {
     }
 
     public enum TerminalTypes{
-        ARRVALUE, EXPR
+        ARRVALUE, EXPR, FORLOOPCOUNTER, IFSTATEMENTCOUNTER
     }
 
 }

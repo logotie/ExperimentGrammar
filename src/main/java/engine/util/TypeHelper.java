@@ -44,6 +44,10 @@ public class TypeHelper {
 
     private static boolean IsTokenSurroundedByStringChars(List<ParseTree> terms, int termIdx){
 
+        if(termIdx<0||termIdx==0){
+            return false;
+        }
+
         int totalAmountOfTerms = terms.size();
 
         int totalIdxAdjusted = totalAmountOfTerms-1;
