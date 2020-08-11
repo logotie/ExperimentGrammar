@@ -36,7 +36,7 @@ public class EngineRunner {
         var mostRecentInstruction = InstructionStack.popInstruc();
 
         //Start processing
-        //InstructRouter(mostRecentInstruction.getT(), mostRecentInstruction.getT2());
+        InstructRouter(mostRecentInstruction.getT(), mostRecentInstruction.getT2());
     }
 
     private void InstructRouter(EngineConstants.Types type, ParserRuleContext instruction){
