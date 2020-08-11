@@ -3,7 +3,7 @@ package engine.util;
 public class EngineConstants {
 
     public enum Types{
-        ARITHMETIC, ASSIGNMUTABLE, ASSIGNNONMUTABLE;
+        ARITHMETIC, ASSIGNMUTABLE;
     }
 
     public enum VarTypes{

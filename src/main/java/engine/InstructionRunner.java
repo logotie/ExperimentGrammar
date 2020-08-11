@@ -1,5 +1,5 @@
 package engine;
-import grammar.SimpleDraftGParser;
+import grammar.*;
 import main.Starter;
 
 public class InstructionRunner {

@@ -3,8 +3,7 @@ package engine;
 import engine.util.EngineConstants;
 import engine.util.TerminalExpr;
 import engine.util.TypeHelper;
-import grammar.SimpleDraftGBaseListener;
-import grammar.SimpleDraftGParser;
+import grammar.*;
 
 import static engine.EngineRunner.InstructionStack;
 import static engine.EngineRunner.Terminals;
@@ -45,7 +44,7 @@ public class EngineListener extends SimpleDraftGBaseListener {
         System.out.println(ctx.getText()+":"+counter+"-Assign String mutable Count:"+ctx.children.size());
         //As having children greater than one in the node denotes a level
         if(ctx.children.size()>1) {
-            InstructionStack.push(EngineConstants.Types.ASSIGNNONMUTABLE, ctx, EngineConstants.InstructionTypes.ASSIGNMENT);
+            InstructionStack.push(EngineConstants.Types.ASSIGNMUTABLE, ctx, EngineConstants.InstructionTypes.ASSIGNMENT);
         }else {
             throw new RuntimeException();
         }
@@ -57,7 +56,7 @@ public class EngineListener extends SimpleDraftGBaseListener {
         System.out.println(ctx.getText()+":"+counter+"-Assign String mutable Count:"+ctx.children.size());
         //As having children greater than one in the node denotes a level
         if(ctx.children.size()>1) {
-            InstructionStack.push(EngineConstants.Types.ASSIGNNONMUTABLE, ctx, EngineConstants.InstructionTypes.ASSIGNMENT);
+            InstructionStack.push(EngineConstants.Types.ASSIGNMUTABLE, ctx, EngineConstants.InstructionTypes.ASSIGNMENT);
         }else {
             throw new RuntimeException();
         }
