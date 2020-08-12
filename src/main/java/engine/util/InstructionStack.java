@@ -10,6 +10,7 @@ public class InstructionStack {
     private Stack<EngineConstants.Types> types;
     private Stack<EngineConstants.InstructionTypes> instrucType;
 
+
     public InstructionStack(){
         instrucs=new Stack<>();
         types=new Stack<>();

@@ -20,7 +20,7 @@ public class EngineRunner {
 
     public void ProcessBlock(SimpleDraftGParser.BlockContext ctx){
         //We have block context
-        List<ParseTree> nodes = ctx.children;
+        List<ParseTree> nodes =   ctx.children;
         //Gonna walk it
         // Create a generic parse tree walker that can trigger callbacks
         ParseTreeWalker walker = new ParseTreeWalker();
